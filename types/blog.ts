@@ -16,6 +16,7 @@ export interface Post {
   content: string;
   excerpt: string;
   date: string;
+  modified?: string; // <-- ADD THIS LINE
   slug: string;
   featuredImage?: {
     node: {

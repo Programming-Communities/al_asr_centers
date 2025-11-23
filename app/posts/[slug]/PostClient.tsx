@@ -310,20 +310,21 @@ export default function PostClient({ post, slug, isUrdu }: PostClientProps) {
 
             {/* Back to Posts */}
             <div className={`mt-8 pt-6 border-t border-gray-200 dark:border-gray-700 ${currentIsRTL ? 'text-right' : 'text-left'}`}>
-              <Link
+                    <Link
                 href="/"
-                className={`inline-flex items-center font-semibold transition-colors ${
+                className={`inline-flex items-center gap-2 bg-red-900 hover:bg-red-800 text-white px-6 py-3 rounded-lg transition-colors duration-200 ${
                   currentIsRTL ? 'flex-row-reverse' : ''
-                } ${readingTheme === 'dark' ? 'text-red-400 hover:text-red-300' : 'text-red-900 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300'}`}
-                prefetch={true} // Enable prefetching for instant navigation
+                }`}
+                prefetch={true}
               >
                 <svg
-                  className={`${currentIsRTL ? 'ml-2 rotate-180' : 'mr-2'} w-4 h-4`}
+                  className={`w-5 h-5 ${currentIsRTL ? 'ml-2' : 'mr-2'}`}
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
+                  strokeWidth={2.5}
                 >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
                 </svg>
                 Back to All Posts
               </Link>

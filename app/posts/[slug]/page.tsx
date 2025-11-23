@@ -39,7 +39,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
   );
 }
 
-// Generate metadata for SEO
+// ✅ FIXED: Generate dynamic metadata for each post with proper OG images
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const post = await getPost(slug);
@@ -51,37 +51,73 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     };
   }
 
+  const SITE_URL = "https://al-asr.centers.pk";
+  
   const cleanExcerpt = post.excerpt?.replace(/<[^>]*>/g, '').substring(0, 160) + '...' ||
                       post.content?.replace(/<[^>]*>/g, '').substring(0, 160) + '...' ||
                       'Islamic services and community programs from Al-Asr ( Islamic Service )';
 
-  const imageUrl = post.featuredImage?.node?.sourceUrl || '/og-image.png';
+  // ✅ FIXED: Use absolute URL for post-specific images
+  const imageUrl = post.featuredImage?.node?.sourceUrl 
+    ? post.featuredImage.node.sourceUrl
+    : `${SITE_URL}/og-image.png`;
 
-  return {
+  const postUrl = `${SITE_URL}/posts/${slug}`;
+
+  const metadata = {
     title: `${post.title} | Al-Asr ( Islamic Service )`,
     description: cleanExcerpt,
+    alternates: {
+      canonical: postUrl,
+    },
     openGraph: {
       title: post.title,
       description: cleanExcerpt,
+      url: postUrl,
+      siteName: "Al-Asr Islamic Service",
       images: [
         {
           url: imageUrl,
           width: 1200,
           height: 630,
           alt: post.featuredImage?.node?.altText || post.title,
+          type: 'image/jpeg',
         },
       ],
       type: 'article',
       publishedTime: post.date,
+      modifiedTime: post.modified,
       authors: [post.author?.node?.name || 'Al-Asr ( Islamic Service )'],
+      locale: 'ur_PK',
     },
     twitter: {
       card: 'summary_large_image',
       title: post.title,
       description: cleanExcerpt,
       images: [imageUrl],
+      creator: '@al-asr',
+      site: '@al-asr',
     },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
+    },
+    // ✅ ADDED: Additional meta tags for better social media sharing
+    other: {
+      'og:image:secure_url': imageUrl,
+      'og:image:width': '1200',
+      'og:image:height': '630',
+      'twitter:image:alt': post.featuredImage?.node?.altText || post.title,
+    }
   };
+
+  return metadata;
 }
 
 // Generate static params for SSG
