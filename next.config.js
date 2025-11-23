@@ -13,7 +13,7 @@ const nextConfig = {
     imageSizes: [16, 32, 64, 96, 128, 256],
     minimumCacheTTL: 86400, // 1 day
     dangerouslyAllowSVG: true,
-    qualities: [75, 80, 90],
+    qualities: [75, 65, 80, 90],
   },
 
   // ✅ Compiler optimizations
