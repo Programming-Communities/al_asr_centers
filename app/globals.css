@@ -1,0 +1,561 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --header-bg: #991b1b; /* Red background for header in light mode */
+  --header-text: #ffffff; /* White text for header in light mode */
+}
+
+[data-theme="dark"] {
+  --background: #1a1a1a; /* Light black background */
+  --foreground: #f5f5f5; /* Light text */
+  --header-bg: #2d2d2d; /* Light black header */
+  --header-text: #f5f5f5; /* Light text in header */
+}
+
+/* Critical CSS - Load First */
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: system-ui, -apple-system, sans-serif;
+  margin: 0;
+  padding: 0;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Header Background */
+
+.header-bg {
+  background: var(--header-bg) !important;
+  color: var(--header-text) !important;
+}
+
+/* ========== IMAGE FIXES ========== */
+/* Blog Card Images - Show full image without cropping */
+.blog-card-image {
+  width: 100%;
+  height: 200px; /* Fixed height for consistency */
+  object-fit: contain; /* Show full image without cropping */
+  background-color: #f8fafc; /* Light background for transparent images */
+}
+
+.dark .blog-card-image {
+  background-color: #2d2d2d; /* Dark background for transparent images */
+}
+
+/* Post Featured Images - Show full image */
+.post-featured-image {
+  width: 100%;
+  height: 400px; /* Fixed height for featured images */
+  object-fit: contain; /* Show full image without cropping */
+  background-color: #f8fafc; /* Light background */
+}
+
+.dark .post-featured-image {
+  background-color: #2d2d2d; /* Dark background */
+}
+
+/* Next.js Image container fixes */
+.image-container {
+  position: relative;
+  width: 100%;
+  background-color: #f8fafc;
+}
+
+.dark .image-container {
+  background-color: #2d2d2d;
+}
+
+/* ========== DARK MODE STYLES ========== */
+.dark {
+  background: #1a1a1a;
+  color: #f5f5f5;
+}
+
+.dark body {
+  background: #1a1a1a;
+  color: #f5f5f5;
+}
+
+/* Dark mode backgrounds */
+.dark .bg-white {
+  background-color: #2d2d2d !important;
+}
+
+.dark .bg-gray-50 {
+  background-color: #1a1a1a !important;
+}
+
+.dark .bg-gray-100 {
+  background-color: #2d2d2d !important;
+}
+
+.dark .bg-red-50 {
+  background-color: #3a1a1a !important;
+}
+
+/* Dark mode text colors */
+.dark .text-gray-900 {
+  color: #f5f5f5 !important;
+}
+
+.dark .text-gray-700 {
+  color: #e5e5e5 !important;
+}
+
+.dark .text-gray-600 {
+  color: #d4d4d4 !important;
+}
+
+.dark .text-gray-500 {
+  color: #a3a3a3 !important;
+}
+
+.dark .text-white {
+  color: #f5f5f5 !important;
+}
+
+/* Dark mode borders */
+.dark .border-gray-200 {
+  border-color: #404040 !important;
+}
+
+.dark .border-gray-300 {
+  border-color: #525252 !important;
+}
+
+.dark .border-red-900 {
+  border-color: #991b1b !important;
+}
+
+/* Dark mode buttons and badges */
+.dark .bg-red-900 {
+  background-color: #991b1b !important;
+}
+
+.dark .text-red-900 {
+  color: #fca5a5 !important;
+}
+
+/* Footer dark mode */
+.dark footer {
+  background-color: #1a1a1a !important;
+  color: #f5f5f5 !important;
+  border-top: 1px solid #404040;
+}
+
+/* Blog items dark mode */
+.dark .blog-item {
+  background-color: #2d2d2d !important;
+  border-color: #991b1b !important;
+  color: #f5f5f5 !important;
+}
+
+/* Post content dark mode */
+.dark .post-content {
+  background-color: #2d2d2d !important;
+  color: #f5f5f5 !important;
+}
+
+/* ========== CATEGORIES DROPDOWN STYLING ========== */
+.category-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.subcategories-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 0.5rem;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+  min-width: 200px;
+  z-index: 50;
+  padding: 0.5rem 0;
+}
+
+.category-dropdown.nested .subcategories-menu {
+  left: 100%;
+  top: 0;
+  margin-top: 0;
+  margin-left: 0.25rem;
+  min-width: 180px;
+}
+
+.subcategory-item {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  color: #374151;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.subcategory-item:hover {
+  background-color: #f3f4f6;
+}
+
+.subcategory-item.active {
+  background-color: #fef2f2;
+  color: #991b1b;
+}
+
+.category-button {
+  position: relative;
+  padding: 0.5rem 1.25rem;
+  border-radius: 0.25rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  border: 1px solid #d1d5db;
+  background: #f9fafb;
+  color: #374151;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.category-button:hover {
+  background: #f3f4f6;
+}
+
+.category-button.active {
+  background: #991b1b;
+  color: white;
+  border-color: #991b1b;
+}
+
+.category-button.has-children {
+  padding-right: 2rem;
+}
+
+.dropdown-arrow {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: transform 0.2s ease;
+}
+
+/* Dark mode categories */
+.dark .subcategories-menu {
+  background: #2d2d2d;
+  border-color: #404040;
+}
+
+.dark .subcategory-item {
+  color: #f5f5f5;
+}
+
+.dark .subcategory-item:hover {
+  background-color: #404040;
+}
+
+.dark .subcategory-item.active {
+  background-color: #3a1a1a;
+  color: #fca5a5;
+}
+
+.dark .category-button {
+  background: #2d2d2d;
+  border-color: #404040;
+  color: #f5f5f5;
+}
+
+.dark .category-button:hover {
+  background: #404040;
+}
+
+.dark .category-button.active {
+  background: #991b1b;
+  color: white;
+  border-color: #991b1b;
+}
+
+.active-filter-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #dbeafe;
+  border: 1px solid #bfdbfe;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  color: #1e40af;
+}
+
+.clear-filter-button {
+  background: none;
+  border: none;
+  color: #3b82f6;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.clear-filter-button:hover {
+  color: #1d4ed8;
+}
+
+.dark .active-filter-badge {
+  background: #1e3a8a;
+  border-color: #3730a3;
+  color: #dbeafe;
+}
+
+.dark .clear-filter-button {
+  color: #60a5fa;
+}
+
+.dark .clear-filter-button:hover {
+  color: #3b82f6;
+}
+
+/* ========== CUSTOM SHADOW FIX ========== */
+.hover\:shadow-\[-7px_7px_0px_\#8b0000\]:hover {
+  box-shadow: -7px 7px 0px #8b0000;
+}
+
+.dark .hover\:shadow-\[-7px_7px_0px_\#8b0000\]:hover {
+  box-shadow: -7px 7px 0px #7f1d1d;
+}
+
+/* ========== RESPONSIVE IMAGES ========== */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* WordPress Content Styling */
+.wp-content {
+  word-wrap: break-word;
+  line-height: 1.8;
+}
+
+.wp-content * {
+  max-width: 100%;
+}
+
+.wp-content p {
+  margin-bottom: 1rem;
+}
+
+.wp-content.urdu-arabic-content {
+  line-height: 2.2;
+  font-size: 1.1em;
+  text-align: right;
+}
+
+.wp-content.english-content {
+  line-height: 1.7;
+  font-size: 1em;
+  text-align: left;
+}
+
+.wp-content ul, .wp-content ol {
+  margin-bottom: 1rem;
+}
+
+.wp-content.urdu-arabic-content ul, 
+.wp-content.urdu-arabic-content ol {
+  padding-right: 1.5rem;
+  padding-left: 0;
+}
+
+.wp-content.english-content ul, 
+.wp-content.english-content ol {
+  padding-left: 1.5rem;
+  padding-right: 0;
+}
+
+.wp-content li {
+  margin-bottom: 0.5rem;
+}
+
+.wp-content h1, .wp-content h2, .wp-content h3, 
+.wp-content h4, .wp-content h5, .wp-content h6 {
+  font-weight: 600;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  line-height: 1.3;
+}
+
+.wp-content.urdu-arabic-content h1, 
+.wp-content.urdu-arabic-content h2, 
+.wp-content.urdu-arabic-content h3, 
+.wp-content.urdu-arabic-content h4, 
+.wp-content.urdu-arabic-content h5, 
+.wp-content.urdu-arabic-content h6 {
+  text-align: right;
+  line-height: 1.8;
+}
+
+.wp-content.english-content h1, 
+.wp-content.english-content h2, 
+.wp-content.english-content h3, 
+.wp-content.english-content h4, 
+.wp-content.english-content h5, 
+.wp-content.english-content h6 {
+  text-align: left;
+}
+
+.wp-content h1 { font-size: 2rem; }
+.wp-content h2 { font-size: 1.75rem; }
+.wp-content h3 { font-size: 1.5rem; }
+.wp-content h4 { font-size: 1.25rem; }
+.wp-content h5 { font-size: 1.125rem; }
+.wp-content h6 { font-size: 1rem; }
+
+.wp-content.urdu-arabic-content h1 { font-size: 2.2rem; }
+.wp-content.urdu-arabic-content h2 { font-size: 1.9rem; }
+.wp-content.urdu-arabic-content h3 { font-size: 1.6rem; }
+.wp-content.urdu-arabic-content h4 { font-size: 1.4rem; }
+.wp-content.urdu-arabic-content h5 { font-size: 1.2rem; }
+.wp-content.urdu-arabic-content h6 { font-size: 1.1rem; }
+
+/* ========== PERFORMANCE OPTIMIZATIONS ========== */
+
+
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* ========== ACCESSIBILITY IMPROVEMENTS ========== */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* ========== RESPONSIVE IMPROVEMENTS ========== */
+@media (max-width: 640px) {
+  .wp-content h1 { font-size: 1.75rem; }
+  .wp-content h2 { font-size: 1.5rem; }
+  .wp-content h3 { font-size: 1.25rem; }
+  
+  .wp-content.urdu-arabic-content h1 { font-size: 1.9rem; }
+  .wp-content.urdu-arabic-content h2 { font-size: 1.6rem; }
+  .wp-content.urdu-arabic-content h3 { font-size: 1.4rem; }
+  
+  .category-button {
+    padding: 0.375rem 1rem;
+    font-size: 0.875rem;
+  }
+}
+
+/* ========== FIX FOR DARK READER CONFLICTS ========== */
+[data-darkreader-inline-bgcolor],
+[data-darkreader-inline-color],
+[data-darkreader-inline-fill],
+[data-darkreader-inline-stroke],
+[data-darkreader-inline-border] {
+  all: unset;
+}
+
+
+
+
+
+
+
+/* Font Size Controls */
+.blog-posts-container.normal .text-lg {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+.blog-posts-container.large .text-lg {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
+.blog-posts-container.large .text-base {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+.blog-posts-container.xlarge .text-xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+.blog-posts-container.xlarge .text-lg {
+  font-size: 1.375rem;
+  line-height: 2rem;
+}
+
+/* Responsive font size controls */
+@media (max-width: 640px) {
+  .fixed.bottom-6.right-6 {
+    bottom: 4rem;
+    right: 1rem;
+  }
+  
+  .fixed.bottom-6.right-6 .flex.gap-1 {
+    flex-direction: column;
+  }
+  
+  .fixed.bottom-6.right-6 .px-3.py-2 {
+    padding: 0.5rem 0.75rem;
+  }
+}
+
+
+
+/* Reading Mode Styles */
+.reading-dark {
+  --tw-bg-opacity: 1;
+  background-color: rgb(17 24 39 / var(--tw-bg-opacity));
+  color: rgb(243 244 246 / 1);
+}
+
+.reading-dark .prose {
+  color: rgb(243 244 246 / 1);
+}
+
+/* Smooth transitions for font size changes */
+#blog-content {
+  transition: font-size 0.3s ease, line-height 0.3s ease;
+}
+
+/* Enhanced readability for larger text */
+.prose {
+  max-width: 65ch;
+}
+
+.prose-lg {
+  font-size: 1.125rem;
+  line-height: 1.8;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .prose-lg {
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+}
+
+
+
+
+
+
+

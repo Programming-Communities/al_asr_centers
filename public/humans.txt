@@ -1,0 +1,15 @@
+/* humans.txt */
+/* TEAM */
+  Site: Al-Asr Islamic Service
+  URL: https://al-asr.centers.pk
+  Description: Islamic Services, Calendar Events, and Community Programs
+
+/* THANKS */
+  Next.js - React Framework
+  WordPress - Headless CMS
+  Vercel - Hosting Platform
+
+/* SITE */
+  Last update: 2024
+  Language: Urdu/English
+  Doctype: HTML5

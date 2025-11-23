@@ -1,0 +1,16 @@
+# public/robots.txt
+User-agent: *
+Allow: /
+
+# Block admin and API routes
+Disallow: /api/
+Disallow: /admin/
+Disallow: /wp-admin/
+Disallow: /wp-json/
+
+# Block Next.js internal routes
+Disallow: /_next/
+Disallow: /_vercel/
+
+# Sitemap
+Sitemap: https://al-asr.centers.pk/sitemap.xml

@@ -1,0 +1,6 @@
+Contact: admin@al-asr.centers.pk
+Expires: 2025-12-31T00:00:00.000Z
+Acknowledgments: https://al-asr.centers.pk/security-hall-of-fame
+Preferred-Languages: en, ur
+Canonical: https://al-asr.centers.pk/.well-known/security.txt
+Policy: https://al-asr.centers.pk/security-policy

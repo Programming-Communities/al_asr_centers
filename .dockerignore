@@ -1,0 +1,6 @@
+node_modules
+.next
+.git
+.gitignore
+project_files.txt
+project_code_dump.txt

@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="ur">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offline - Al-Asr Islamic Service</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            color: #334155;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 480px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            padding: 48px 32px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #991b1b, #dc2626);
+        }
+
+        .icon-container {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #fef2f2, #fee2e2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            border: 3px solid #fecaca;
+        }
+
+        .icon {
+            font-size: 48px;
+            color: #dc2626;
+        }
+
+        h1 {
+            color: #991b1b;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
+
+        .subtitle {
+            color: #64748b;
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .description {
+            color: #64748b;
+            font-size: 16px;
+            margin-bottom: 32px;
+            max-width: 320px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 14px 28px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            min-width: 140px;
+            justify-content: center;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #991b1b, #dc2626);
+            color: white;
+            box-shadow: 0 4px 15px rgba(153, 27, 27, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(153, 27, 27, 0.4);
+        }
+
+        .btn-secondary {
+            background: #f8fafc;
+            color: #475569;
+            border: 2px solid #e2e8f0;
+        }
+
+        .btn-secondary:hover {
+            background: #f1f5f9;
+            border-color: #cbd5e1;
+            transform: translateY(-2px);
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 16px;
+            margin-top: 32px;
+            padding-top: 32px;
+            border-top: 1px solid #f1f5f9;
+        }
+
+        .feature {
+            text-align: center;
+            padding: 16px;
+            background: #f8fafc;
+            border-radius: 12px;
+            transition: transform 0.2s ease;
+        }
+
+        .feature:hover {
+            transform: translateY(-2px);
+            background: #f1f5f9;
+        }
+
+        .feature-icon {
+            font-size: 24px;
+            margin-bottom: 8px;
+            color: #991b1b;
+        }
+
+        .feature-text {
+            font-size: 14px;
+            color: #475569;
+            font-weight: 500;
+        }
+
+        .connection-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: #dc2626;
+            font-weight: 500;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: #dc2626;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: 700;
+            color: #991b1b;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .tagline {
+            color: #64748b;
+            font-size: 14px;
+            margin-bottom: 32px;
+            font-style: italic;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 32px 20px;
+                margin: 20px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+            
+            .subtitle {
+                font-size: 16px;
+            }
+            
+            .button-group {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+            
+            .features {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Dark mode support */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+                color: #e2e8f0;
+            }
+            
+            .container {
+                background: #1e293b;
+                box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            }
+            
+            .description, .subtitle {
+                color: #cbd5e1;
+            }
+            
+            .btn-secondary {
+                background: #334155;
+                color: #e2e8f0;
+                border-color: #475569;
+            }
+            
+            .btn-secondary:hover {
+                background: #475569;
+            }
+            
+            .feature {
+                background: #334155;
+                color: #e2e8f0;
+            }
+            
+            .feature:hover {
+                background: #475569;
+            }
+            
+            .feature-text {
+                color: #e2e8f0;
+            }
+            
+            .connection-status {
+                background: #7f1d1d;
+                border-color: #991b1b;
+                color: #fecaca;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Logo & Branding -->
+        <div class="logo">Al-Asr Islamic Service</div>
+        <div class="tagline">Guidance & Community Services</div>
+
+        <!-- Connection Status -->
+        <div class="connection-status">
+            <div class="status-dot"></div>
+            No Internet Connection
+        </div>
+
+        <!-- Main Icon -->
+        <div class="icon-container">
+            <div class="icon">📶</div>
+        </div>
+
+        <!-- Content -->
+        <h1>Connection Lost</h1>
+        <div class="subtitle">You're currently offline</div>
+        <p class="description">
+            We're unable to connect to our services. Please check your internet connection and try again. Some features may be limited while offline.
+        </p>
+
+        <!-- Action Buttons -->
+        <div class="button-group">
+            <button class="btn btn-primary" onclick="window.location.reload()">
+                <span>🔄</span> Try Again
+            </button>
+            <button class="btn btn-secondary" onclick="checkConnection()">
+                <span>🔍</span> Check Connection
+            </button>
+        </div>
+
+        <!-- Features Available Offline -->
+        <div class="features">
+            <div class="feature">
+                <div class="feature-icon">📖</div>
+                <div class="feature-text">Quran Reading</div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🕌</div>
+                <div class="feature-text">Prayer Times</div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">📅</div>
+                <div class="feature-text">Islamic Calendar</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function checkConnection() {
+            if (navigator.onLine) {
+                window.location.reload();
+            } else {
+                alert('Still offline. Please check your internet connection and try again.');
+            }
+        }
+
+        // Auto-retry when connection is restored
+        window.addEventListener('online', function() {
+            window.location.reload();
+        });
+
+        // Periodic connection check
+        setInterval(function() {
+            if (navigator.onLine) {
+                window.location.reload();
+            }
+        }, 5000);
+    </script>
+</body>
+</html>
